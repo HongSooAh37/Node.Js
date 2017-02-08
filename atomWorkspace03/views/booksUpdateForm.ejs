@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Free Bootstrap Admin Template : Two Page</title>
+    <!-- BOOTSTRAP STYLES-->
+    <link href="/assets/css/bootstrap.css" rel="stylesheet" />
+    <!-- FONTAWESOME STYLES-->
+    <link href="/assets/css/font-awesome.css" rel="stylesheet" />
+    <!-- CUSTOM STYLES-->
+    <link href="/assets/css/custom.css" rel="stylesheet" />
+    <!-- GOOGLE FONTS-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+</head>
+<body>
+    <div id="wrapper">
+        <div class="navbar navbar-inverse navbar-fixed-top">
+        <!-- [menu] include-->
+        <% include ./module/menu.ejs %>
+
+        <!-- body start -->
+
+        <div id="page-wrapper">
+            <div id="page-inner">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2>Books Detail/Update</h2>
+                    </div>
+                </div>
+                <hr />
+
+                <!-- BODY MIDDLE START -->
+                  <div class="row">
+				    <div class="col-md-8 col-md-offset-0">
+				      <form class="form-horizontal" role="form" method='post' action='/update/booksUpdate'>
+				        <fieldset>
+				          <!-- Form Name -->
+				          <legend>Books Update</legend>
+				          <!-- Text input-->
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label" for="textinput">도서번호</label>
+                    <div class="col-sm-10">
+                      <input type="text" name="booksNumber" placeholder="booksNumber" class="form-control" value="<%= upResult[0].booksnumber %>" readonly="readonly">
+                    </div>
+                  </div>
+
+				          <div class="form-group">
+				            <label class="col-sm-2 control-label" for="textinput">도서명</label>
+				            <div class="col-sm-10">
+				              <input type="text" name="booksName" placeholder="booksName" class="form-control" value="<%= upResult[0].booksname %>">
+				            </div>
+				          </div>
+
+				          <!-- Text input-->
+						 <div class="form-group">
+						            <label class="col-sm-2 control-label" for="textinput">도서 분류</label>
+						            	 <div class="form-group">
+						                        <div class="col-sm-9">
+						                            <select class="form-control" id="booksKindsNumber" name="booksKindsNumber">
+                                          <option>--선택--</option>
+                                          <% for(var k in UKindResult){ %>
+                                          <option value="<%=UKindResult[k].bookskindnumber%>"><%=UKindResult[k].bookskindname%></option>
+                                          <% } %>
+						                            </select>
+						                        </div>
+						                 </div>
+						 </div>
+				          <!-- Text input-->
+      					   <div class="form-group">
+					            <label class="col-sm-2 control-label" for="textinput">저자</label>
+						            <div class="col-sm-4">
+						              <input id="booksAuthor" name="booksAuthor" type="text" placeholder="State" class="form-control" value="<%= upResult[0].booksauthor %>">
+						            </div>
+					            <label class="col-sm-2 control-label" for="textinput">출판사</label>
+						            <div class="col-sm-4">
+						              <input id="booksMade" name="booksMade" type="text" placeholder="Post Code" class="form-control" value="<%= upResult[0].booksmade %>">
+						            </div>
+				          </div>
+				          <!-- Text input-->
+				          <div class="form-group">
+				            <label class="col-sm-2 control-label" for="textinput">최초 대여일</label>
+				            <div class="col-sm-10">
+				              <input id="firstRent" name="firstRent" type="text" placeholder="State" class="form-control" value="<%= upResult[0].firstrent %>" readonly="readonly">
+				            </div>
+				          </div>
+
+				          <div class="form-group">
+				            <label class="col-sm-2 control-label" for="textinput">대여 가능 여부</label>
+				             <div class="controls col-md-8 "  style="margin-bottom: 10px">
+                                <label class="radio-inline"><input type="radio" checked="checked" name="booksLendingPossible" id="id_select_1" value="y"  style="margin-bottom: 10px">Book Rental Yes</label>
+                                <label class="radio-inline"> <input type="radio" name="booksLendingPossible" id="id_select_2" value="n"  style="margin-bottom: 10px">Book Rental No</label>
+                            </div>
+				          </div>
+				          <!-- Text input-->
+  						  <div class="form-group">
+					            <label class="col-sm-2 control-label" for="textinput">대여 일수</label>
+					            <div class="col-sm-4">
+					              <input type="text" placeholder="State" name="booksLendingDay" class="form-control" value="<%= upResult[0].bookslendingday %>"  readonly="readonly">
+					            </div>
+
+					            <label class="col-sm-2 control-label" for="textinput">대여 횟수</label>
+					            <div class="col-sm-4">
+					              <input id="booksLendingCount" name="booksLendingCount" type="text" placeholder="Post Code" class="form-control" value="<%= upResult[0].bookslendingcount %>"  readonly="readonly">
+					            </div>
+				          </div>
+						  <div class="form-group">
+				            <label class="col-sm-2 control-label" for="textinput">파손 여부</label>
+				             <div class="controls col-md-8 "  style="margin-bottom: 10px">
+                                <label class="radio-inline"><input type="radio" checked="checked" name="booksDamage" id="id_select_1" value="n"  style="margin-bottom: 10px">Book Saving</label>
+                                <label class="radio-inline"> <input type="radio" name="booksDamage" id="id_select_2" value="y"  style="margin-bottom: 10px">Book Damage</label>
+                    </div>
+				      </div>
+				          <div class="form-group">
+				            <label class="col-sm-2 control-label" for="textinput">파손 날짜</label>
+				            <div class="col-sm-10">
+				              <input id="booksDamageDate" name="booksDamageDate" type="date" placeholder="Address Line 2" class="form-control" value="<%= upResult[0].booksdamagedate %>">
+				            </div>
+				          </div>
+						<div class="form-group">
+							<label class="col-sm-2 control-label" for="textinput">도서관번호</label>
+								<div class="form-group">
+									<div class="col-sm-9">
+										<select class="form-control" id="libraryNumber" name="libraryNumber">
+                      <option>--선택--</option>
+                      <% for(var l in ULibResult){ %>
+                      <option value="<%=ULibResult[l].librarynumber%>"><%=ULibResult[l].libraryname%></option>
+                      <% } %>
+										</select>
+									</div>
+								</div>
+						</div>
+				          <div class="form-group">
+				            <div class="col-sm-offset-2 col-sm-10">
+				              <div class="pull-right">
+				                <input type="submit" class="btn btn-primary" value="update">
+				              </div>
+				            </div>
+				          </div>
+				        </fieldset>
+				      </form>
+				    </div><!-- /.col-lg-12 -->
+	</div>
+<!-- /.row -->
+<!-- BODY MIDDLE END -->
+	</div>
+                <hr />
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="/assets/js/jquery-1.10.2.js"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="/assets/js/jquery.metisMenu.js"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="/assets/js/custom.js"></script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Free Bootstrap Admin Template : Two Page</title>
+    <!-- BOOTSTRAP STYLES-->
+    <link href="/assets/css/bootstrap.css" rel="stylesheet" />
+    <!-- FONTAWESOME STYLES-->
+    <link href="/assets/css/font-awesome.css" rel="stylesheet" />
+    <!-- CUSTOM STYLES-->
+    <link href="/assets/css/custom.css" rel="stylesheet" />
+    <!-- GOOGLE FONTS-->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+</head>
+<body>
+    <div id="wrapper">
+        <div class="navbar navbar-inverse navbar-fixed-top">
+
+        <!-- [menu] include-->
+        <% include ./module/menu.ejs %>
+
+        <!-- body start -->
+        <div id="page-wrapper">
+            <div id="page-inner">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2>member insert</h2>
+                    </div>
+                </div>
+                <hr />
+
+                <!-- BODY MIDDLE START -->s
+ 			  <div class="row">
+    <div class="col-md-8 col-md-offset-0">
+      <form class="form-horizontal" role="form" method="post" action="/human/member">
+        <fieldset>
+
+          <!-- Form Name -->
+          <legend>Member</legend>
+
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="textinput">회원 이름</label>
+            <div class="col-sm-10">
+              <input name="membersName" type="text" placeholder="member name" class="form-control">
+            </div>
+          </div>
+
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="textinput">주민 등록 번호</label>
+            <div class="col-sm-10">
+              <input name="membersRrn" type="text" placeholder="social number" class="form-control">
+            </div>
+          </div>
+
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="textinput">주소</label>
+            <div class="col-sm-10">
+              <input name="membersAddr" type="text" placeholder="address" class="form-control">
+            </div>
+          </div>
+
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="textinput">연락처</label>
+            <div class="col-sm-4">
+              <input name="membersTel" type="text" placeholder="phone Number" class="form-control">
+            </div>
+
+            <label class="col-sm-2 control-label" for="textinput">회비납부여부</label>
+            <div class="col-sm-4">
+               <label class="radio-inline"><input type="radio" checked="checked" name="membersVip" id="id_select_1" value="1"  style="margin-bottom: 10px">vip member</label>
+               <label class="radio-inline"><input type="radio" name="membersVip" value="0"  style="margin-bottom: 10px">general member</label>
+            </div>
+          </div>
+          <!-- Text input-->
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="textinput">도서관번호</label>
+            	 <div class="form-group">
+                        <div class="col-sm-9">
+                            <select class="form-control" id="libraryNumber" name="libraryNumber">
+                                <option>--선택--</option>
+                                <% for(var l in result){ %>
+                                <option value="<%=result[l].librarynumber%>"><%=result[l].libraryname%></option>
+                                <% } %>
+                            </select>
+                        </div>
+                    </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <div class="pull-right">
+                <input type="reset" class="btn btn-default" value="reset">
+				<input type="submit" class="btn btn-primary" value="submit">
+              </div>
+            </div>
+          </div>
+
+        </fieldset>
+      </form>
+    </div><!-- /.col-lg-12 -->
+</div><!-- /.row -->
+				<!-- BODY MIDDLE END -->
+
+</div>
+                <hr />
+            </div>
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="/assets/js/jquery-1.10.2.js"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="/assets/js/jquery.metisMenu.js"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="/assets/js/custom.js"></script>
+</body>
+</html>
