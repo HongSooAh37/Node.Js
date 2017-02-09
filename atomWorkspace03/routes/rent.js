@@ -97,7 +97,7 @@ module.exports = function(){
         console.log(req.body.booksRentNumber)
         var statement = [
           req.body.booksRentEndDate ,req.body.booksRentPay,
-          req.body.booksDamage, "y", req.body.booksRentNumber, req.body.totalRentDay
+          req.body.booksDamage, "y",  req.body.totalRentDay, req.body.booksRentNumber
         ]
         var sql = "UPDATE bookrent SET"
                   +" booksrentenddate=?, booksrentpay=?, booksdamage=?, bookslendingpossible=?, totalrentday=?"
@@ -118,9 +118,9 @@ module.exports = function(){
                 var totalCount = result[0].bookslendingcount+1;
                 var totalRentalDay = result[0].bookslendingday+parseInt(req.body.totalRentDay);
                 statement = [
-                  totalCount,totalRentalDay,'y',
-                  req.body.booksRentEndDate,'y',req.body.booksNumber
-                ]
+                              totalCount,totalRentalDay,'y',
+                              req.body.booksRentEndDate,'y',req.body.booksNumber
+                            ]
                 conn.query(sql, statement, function(err, result2){
                   if(err){
                     console.log("뭐냐고"+err)
@@ -128,7 +128,8 @@ module.exports = function(){
                     res.send('hi')
                   }
               })
-              }
+            }// else 자리
+
             })
           }
         })

@@ -13,7 +13,7 @@ module.exports = function(){
       //book_detail/updateForm____get = 목록 상세보기&수정
       router.get('/booksUpdateForm/:url', function(req,res){
         var url = req.params.url
-        var sql = 'SELECT books.*, bookskind.bookskindname, library.libraryname'+
+        var sql = 'SELECT books.*, bookskind.*, library.*'+
                   ' FROM books'+
                   ' LEFT JOIN bookskind'+
                   ' ON books.bookskindsnumber = bookskind.bookskindnumber'+
@@ -34,7 +34,8 @@ module.exports = function(){
                   if(err){
                     //console.log("---booksupdate---3 : "+err)
                   }else{
-                    res.render('booksUpdateForm', {upResult:updateResult, UKindResult:updateKindResult, ULibResult:libraryResult})
+                      //★ select
+                      res.render('booksUpdateForm', {upResult:updateResult, UKindResult:updateKindResult, ULibResult:libraryResult})
                   }
                 })
               }

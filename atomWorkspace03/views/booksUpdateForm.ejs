@@ -12,7 +12,15 @@
     <link href="/assets/css/custom.css" rel="stylesheet" />
     <!-- GOOGLE FONTS-->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+
+    <script
+      src="https://code.jquery.com/jquery-3.1.1.slim.js"
+      integrity="sha256-5i/mQ300M779N2OVDrl16lbohwXNUdzL/R2aVUXyXWA="
+      crossorigin="anonymous">
+    </script>
+
 </head>
+
 <body>
     <div id="wrapper">
         <div class="navbar navbar-inverse navbar-fixed-top">
@@ -57,11 +65,13 @@
 						            <label class="col-sm-2 control-label" for="textinput">도서 분류</label>
 						            	 <div class="form-group">
 						                        <div class="col-sm-9">
+
 						                            <select class="form-control" id="booksKindsNumber" name="booksKindsNumber">
-                                          <option>--선택--</option>
+                                          <option value="<%=upResult[0].bookskindnumber%>"><%=upResult[0].bookskindname%></option>
                                           <% for(var k in UKindResult){ %>
-                                          <option value="<%=UKindResult[k].bookskindnumber%>"><%=UKindResult[k].bookskindname%></option>
+                                              <option value="<%=UKindResult[k].bookskindnumber%>"><%=UKindResult[k].bookskindname%></option>
                                           <% } %>
+
 						                            </select>
 						                        </div>
 						                 </div>
@@ -88,9 +98,16 @@
 				          <div class="form-group">
 				            <label class="col-sm-2 control-label" for="textinput">대여 가능 여부</label>
 				             <div class="controls col-md-8 "  style="margin-bottom: 10px">
+                        <!-- if문 들어갈 자리-->
+                            <%if(upResult[0].bookslendingpossible=='y'){ %>
                                 <label class="radio-inline"><input type="radio" checked="checked" name="booksLendingPossible" id="id_select_1" value="y"  style="margin-bottom: 10px">Book Rental Yes</label>
-                                <label class="radio-inline"> <input type="radio" name="booksLendingPossible" id="id_select_2" value="n"  style="margin-bottom: 10px">Book Rental No</label>
+                                <label class="radio-inline"><input type="radio" name="booksLendingPossible" id="id_select_2" value="n"  style="margin-bottom: 10px">Book Rental No</label>
+                            <% }else{%>
+                                <label class="radio-inline"><input type="radio" name="booksLendingPossible" id="id_select_1" value="y"  style="margin-bottom: 10px">Book Rental Yes</label>
+                                <label class="radio-inline"><input type="radio" checked="checked" name="booksLendingPossible" id="id_select_2" value="n"  style="margin-bottom: 10px">Book Rental No
+                            <% } %>
                             </div>
+
 				          </div>
 				          <!-- Text input-->
   						  <div class="form-group">
@@ -107,8 +124,15 @@
 						  <div class="form-group">
 				            <label class="col-sm-2 control-label" for="textinput">파손 여부</label>
 				             <div class="controls col-md-8 "  style="margin-bottom: 10px">
-                                <label class="radio-inline"><input type="radio" checked="checked" name="booksDamage" id="id_select_1" value="n"  style="margin-bottom: 10px">Book Saving</label>
-                                <label class="radio-inline"> <input type="radio" name="booksDamage" id="id_select_2" value="y"  style="margin-bottom: 10px">Book Damage</label>
+                                <%if(upResult[0].booksdamage=='n') {%>
+                                  <label class="radio-inline"><input type="radio" checked="checked" name="booksDamage" id="id_select_1" value="n"  style="margin-bottom: 10px">Book Saving</label>
+                                  <label class="radio-inline"> <input type="radio" name="booksDamage" id="id_select_2" value="y"  style="margin-bottom: 10px">Book Damage</label>
+                                  //버튼추가
+                                <% }else { %>
+                                  <label class="radio-inline"><input type="radio" name="booksDamage" id="id_select_1" value="n"  style="margin-bottom: 10px">Book Saving</label>
+                                  <label class="radio-inline"> <input type="radio" checked="checked" name="booksDamage" id="id_select_2" value="y"  style="margin-bottom: 10px">Book Damage</label>
+                                 <!--//버튼추가-->
+                                <% } %>
                     </div>
 				      </div>
 				          <div class="form-group">
@@ -122,10 +146,12 @@
 								<div class="form-group">
 									<div class="col-sm-9">
 										<select class="form-control" id="libraryNumber" name="libraryNumber">
-                      <option>--선택--</option>
+
+                      <option value="<%=upResult[0].librarynumber %>"><%=upResult[0].libraryname%></option>
                       <% for(var l in ULibResult){ %>
                       <option value="<%=ULibResult[l].librarynumber%>"><%=ULibResult[l].libraryname%></option>
                       <% } %>
+
 										</select>
 									</div>
 								</div>
