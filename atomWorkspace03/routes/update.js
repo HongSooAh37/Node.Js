@@ -43,7 +43,7 @@ module.exports = function(){
         })
       })
 
-      //book_update = 수정____post : 데이터를 전부 넣어야만 수정 가능
+      //book_update = 수정____post :
       router.post('/booksUpdate', function(req, res){
         var libraryNumber = req.body.libraryNumber;
         var sql = 'SELECT localnumber FROM library WHERE librarynumber=?';
@@ -55,15 +55,19 @@ module.exports = function(){
               console.log("test>localnumber: "+localNumber[0].localnumber)
               var statement = [
                 req.body.booksKindsNumber, localNumber[0].localnumber, req.body.libraryNumber, req.body.booksName ,
-                  req.body.booksMade, req.body.booksAuthor, req.body.booksLendingPossible, req.body.booksDamage, req.body.booksDamageDate
+                  req.body.booksMade, req.body.booksAuthor, req.body.booksLendingPossible, req.body.booksDamage, req.body.booksDamageDate, req.body.booksNumber
               ]
-              var sql = 'UPDATE books SET'+
-                        ' bookskindsnumber=?, localnumber=?, librarynumber=?, booksname=?,'+
-                        ' booksmade=?, booksauthor=?, bookslendingpossible=?,'+
+              var sql = 'UPDATE books SET '+
+                        ' bookskindsnumber=?, localnumber=?, librarynumber=?,'+
+                        ' booksname=?, booksmade=?, booksauthor=?, bookslendingpossible=?,'+
                         ' booksdamage=?, booksdamagedate=?'+
-                        ' WHERE booksnumber=?'
+                        ' WHERE booksnumber=?';
               conn.query(sql, statement, function(err, result){
-                res.redirect('/books/booksList')
+                if(err){
+                    res.send('도서 수정 처리 error'+err)
+                }else{
+                    res.redirect('/books/booksList')
+                }
               })
             }
           })
