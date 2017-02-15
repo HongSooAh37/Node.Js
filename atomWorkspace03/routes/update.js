@@ -7,7 +7,7 @@ module.exports = function(){
         host : '127.0.0.1',
         user : 'dev24id',
         password : 'dev24pw',
-        database : 'library'
+        database : 'dev24db'
       });
 
       //book_detail/updateForm____get = 목록 상세보기&수정
@@ -34,7 +34,6 @@ module.exports = function(){
                   if(err){
                     //console.log("---booksupdate---3 : "+err)
                   }else{
-                      //★ select
                       res.render('booksUpdateForm', {upResult:updateResult, UKindResult:updateKindResult, ULibResult:libraryResult})
                   }
                 })

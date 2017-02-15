@@ -7,7 +7,7 @@ module.exports = function(){
         host : '127.0.0.1',
         user : 'dev24id',
         password : 'dev24pw',
-        database : 'library'
+        database : 'dev24db'
       });
 
       //human=memberAddForm___get

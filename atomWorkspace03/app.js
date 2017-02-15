@@ -11,7 +11,7 @@ var conn = mysql.createConnection({
   host : '127.0.0.1',
   user : 'dev24id',
   password : 'dev24pw',
-  database : 'library'
+  database : 'dev24db'
 });
 
 app.use(session({
@@ -21,6 +21,7 @@ app.use(session({
 }));
 
 app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.json());
 app.use(express.static(__dirname + '/public'));
 app.set('views', __dirname +'/views');
 
